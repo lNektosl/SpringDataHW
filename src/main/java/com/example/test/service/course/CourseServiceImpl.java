@@ -4,7 +4,6 @@ import com.example.test.entity.Course;
 import com.example.test.entity.Student;
 import com.example.test.entity.dto.response.CourseResponse;
 import com.example.test.repository.CourseRepository;
-import com.example.test.repository.StudentRepository;
 import com.example.test.service.student.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -44,7 +43,6 @@ public class CourseServiceImpl implements CourseService {
         course.getStudents().add(student);
         student.getCourses().add(course);
         studentService.change(student);
-        System.out.println(course.getStudents());
         courseRepository.save(course);
 
         return CourseResponse.builder()
