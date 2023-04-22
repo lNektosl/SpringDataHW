@@ -1,10 +1,11 @@
 package com.example.test.service.course;
 
-import com.example.test.entety.Course;
-import com.example.test.entety.Student;
-import com.example.test.entety.dto.response.CourseResponse;
+import com.example.test.entity.Course;
+import com.example.test.entity.Student;
+import com.example.test.entity.dto.response.CourseResponse;
 import com.example.test.repository.CourseRepository;
 import com.example.test.repository.StudentRepository;
+import com.example.test.service.student.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +15,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CourseServiceImpl implements CourseService {
     private final CourseRepository courseRepository;
-    private final StudentRepository studentRepository;
+    private final StudentService studentService;
 
     @Override
     public Course getByID(int id) {
-        return courseRepository.getById(id);
+        return courseRepository.findById(id).get();
     }
 
     @Override
@@ -37,21 +38,21 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public CourseResponse enroll(int studentId, int courseId) {
+    public CourseResponse enroll(int courseId, int studentId) {
         Course course = courseRepository.findById(courseId).get();
-        System.out.println(course.getName());
-        Student student = studentRepository.findById(studentId).get();
-        System.out.println(student.getName());
+        Student student = studentService.getByID(studentId);
         course.getStudents().add(student);
+        student.getCourses().add(course);
+        studentService.change(student);
         System.out.println(course.getStudents());
         courseRepository.save(course);
+
         return CourseResponse.builder()
                 .courseId(course.getId())
                 .name(course.getName())
                 .students(course.getStudents())
                 .build();
     }
-
     public String deleteById(int courseId) {
         String response = "course: " + courseRepository.findById(courseId).get().getName() + " got deleted";
         courseRepository.deleteById(courseId);

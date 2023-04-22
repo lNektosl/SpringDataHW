@@ -1,11 +1,8 @@
-package com.example.test.entety;
+package com.example.test.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 @Data
@@ -19,8 +16,8 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @Column(name = "student_id")
     @ManyToMany(mappedBy = "courses")
     @JsonIgnore
+    @ToString.Exclude
     private List<Student> students;
 }

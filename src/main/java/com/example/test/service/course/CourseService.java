@@ -1,7 +1,7 @@
 package com.example.test.service.course;
 
-import com.example.test.entety.Course;
-import com.example.test.entety.dto.response.CourseResponse;
+import com.example.test.entity.Course;
+import com.example.test.entity.dto.response.CourseResponse;
 
 import java.util.List;
 

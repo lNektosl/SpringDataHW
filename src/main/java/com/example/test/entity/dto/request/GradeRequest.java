@@ -1,4 +1,4 @@
-package com.example.test.entety.dto.request;
+package com.example.test.entity.dto.request;
 
 import lombok.Builder;
 import lombok.Getter;

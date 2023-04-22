@@ -1,8 +1,8 @@
 package com.example.test.contoller;
 
-import com.example.test.entety.Grade;
-import com.example.test.entety.dto.request.GradeRequest;
-import com.example.test.entety.dto.response.GradeResponse;
+import com.example.test.entity.Grade;
+import com.example.test.entity.dto.request.GradeRequest;
+import com.example.test.entity.dto.response.GradeResponse;
 import com.example.test.service.grade.GradeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/grade")
 @RequiredArgsConstructor
-public class GradeCntrl {
+public class GradeController {
     private final GradeService gradeService;
 
 

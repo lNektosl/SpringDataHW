@@ -1,8 +1,8 @@
 package com.example.test.service.grade;
 
-import com.example.test.entety.Grade;
-import com.example.test.entety.dto.request.GradeRequest;
-import com.example.test.entety.dto.response.GradeResponse;
+import com.example.test.entity.Grade;
+import com.example.test.entity.dto.request.GradeRequest;
+import com.example.test.entity.dto.response.GradeResponse;
 
 import java.util.List;
 

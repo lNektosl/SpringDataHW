@@ -1,4 +1,4 @@
-package com.example.test.entety;
+package com.example.test.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,7 +19,6 @@ public class Student {
     private int id;
     private String name;
     private String surname;
-    @Column(name = "course_id")
     @ManyToMany
     @JoinTable(name = "student_course",
             joinColumns = @JoinColumn(name = "course_id"),

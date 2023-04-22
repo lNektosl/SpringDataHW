@@ -1,7 +1,7 @@
 package com.example.test.contoller;
 
-import com.example.test.entety.Course;
-import com.example.test.entety.dto.response.CourseResponse;
+import com.example.test.entity.Course;
+import com.example.test.entity.dto.response.CourseResponse;
 import com.example.test.service.course.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/course")
 @RequiredArgsConstructor
-public class CourseCntrl {
+public class CourseController {
 
     private final CourseService courseService;
 
@@ -25,9 +25,9 @@ public class CourseCntrl {
        return courseService.save(course);
     }
 
-    @PutMapping("/{courseId}/students/{studentId}")
+    @PostMapping("/{courseId}/students/{studentId}")
     CourseResponse enrolStudentToCourse(@PathVariable Integer courseId, @PathVariable Integer studentId){
-        return courseService.enroll(studentId,courseId);
+        return courseService.enroll(courseId,studentId);
     }
     @DeleteMapping("/{course_id}")
     String delete(@PathVariable int course_id){

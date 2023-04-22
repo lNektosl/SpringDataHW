@@ -1,8 +1,8 @@
 package com.example.test.service.student;
 
-import com.example.test.entety.Student;
-import com.example.test.entety.dto.request.StudentRequest;
-import com.example.test.entety.dto.response.StudentResponse;
+import com.example.test.entity.Student;
+import com.example.test.entity.dto.request.StudentRequest;
+import com.example.test.entity.dto.response.StudentResponse;
 import com.example.test.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,9 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService{
 private final StudentRepository studentRepository;
     @Override
-    public Student getByID(int id) {return studentRepository.getById(id);}
+    public Student getByID(int id) {return studentRepository.findById(id).get();}
+
+
 
     @Override
     public StudentResponse save(StudentRequest request) {
@@ -37,6 +39,16 @@ private final StudentRepository studentRepository;
         String response ="Student: " + studentRepository.findById(student_id).get().getName() + " got deleted";
         studentRepository.deleteById(student_id);
         return response;
+    }
+
+    @Override
+    public StudentResponse change(Student student) {
+        studentRepository.save(student);
+        return StudentResponse.builder()
+                .name(student.getName())
+                .surname(student.getSurname())
+                .courses(student.getCourses())
+                .build();
     }
 
 }

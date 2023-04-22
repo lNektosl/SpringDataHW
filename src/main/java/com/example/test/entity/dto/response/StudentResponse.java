@@ -1,6 +1,6 @@
-package com.example.test.entety.dto.response;
+package com.example.test.entity.dto.response;
 
-import com.example.test.entety.Course;
+import com.example.test.entity.Course;
 import lombok.Builder;
 import lombok.Getter;
 
